@@ -8,7 +8,7 @@ int find(int i) { // find a root of i
     int root = i;
     while (parent[root] >= 0) {
         root = parent[root];
-    }
+    } 
     int child = i;
     while (child != root) {
         int tmp = parent[child];
