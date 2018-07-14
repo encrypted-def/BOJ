@@ -99,7 +99,7 @@ int main(void) {
 		S.insert({t[i],i});
 	ans += (*S.find_by_order((K+1)/2-1)).X;
 	rep(i,K,N){
-		S.erase({t[i-K],i-K});
+		S.erase({t[i-K],i-K}); 
 		S.insert({t[i],i});
 		ans += (*S.find_by_order((K+1)/2-1)).X;
 	}
