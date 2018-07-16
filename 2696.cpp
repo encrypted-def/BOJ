@@ -93,7 +93,7 @@ int main(void) {
 				else {
 					minPQ.push(maxPQ.top());
 					maxPQ.pop();
-					maxPQ.push(val);
+					maxPQ.push(val); 
 				}
 			}
 		}
