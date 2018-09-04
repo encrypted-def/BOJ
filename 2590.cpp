@@ -7,28 +7,23 @@ int main(void){
     cnt += paper[6]; // 6*6은 그냥 그 자체가 판 1개를 소모
     while(paper[5] > 0){ // 5*5를 판 1개에 부착하고 1*1을 최대한 많이 부착
         paper[5]--;
-        if(paper[1] >= 11)
-            paper[1] -= 11;
-        else
-            paper[1] = 0;
+        paper[1] -= 11;
+        if(paper[1] < 0) paper[1] = 0;
         cnt++;
     }
     while(paper[4] > 0){ // 4*4를 판 1개에 부착하고 2*2를 최대한 많이 부착
         paper[4]--;
-        if(paper[2] >= 5)
-            paper[2] -= 5;
+        if(paper[2] >= 5) paper[2] -= 5;
         else{
-            if(paper[1] >= (5-paper[2]) * 4) // 2*2를 채울만큼 채우고 나머지는 1*1로 채움
-                paper[1] -= (5-paper[2]) * 4;
-            else
-                paper[1] = 0;
+            paper[1] -= (5-paper[2]) * 4;
+            if(paper[1] < 0) paper[1] = 0;
             paper[2] = 0;
         }
         cnt++;
     }
+
     while(paper[3] > 0){
-        if(paper[3] >= 4)
-            paper[3] -= 4;
+        if(paper[3] >= 4)  paper[3] -= 4;
         else if(paper[3] == 3){
             paper[3] = 0;
             if(paper[2] >= 1){
@@ -37,8 +32,7 @@ int main(void){
             }
             else
                 paper[1] -= 9;
-            if(paper[1] < 0)
-                paper[1] = 0;
+            if(paper[1] < 0) paper[1] = 0;
         }
         else if(paper[3] == 2){
             paper[3] = 0;
@@ -50,27 +44,24 @@ int main(void){
                 paper[2] = 0;
                 paper[1] -= 10;
             }
-            else if(paper[1] == 1){
+            else if(paper[2] == 1){
                 paper[2] = 0;
                 paper[1] -= 14;
             }
-            else
-                paper[1] -= 18;
-            if(paper[1] < 0)
-                paper[1] = 0;
+            else paper[1] -= 18;
+            if(paper[1] < 0) paper[1] = 0;
         }
         else{ // paper[3] == 1;
             paper[3] = 0;
             if(paper[2] >= 5){
                 paper[2] -= 5;
-                paper[1] -= 11;
+                paper[1] -= 7;
             }
             else{
-                paper[1] -= 11 + (5-paper[2]) * 4;
+                paper[1] -= 7 + (5-paper[2]) * 4;
                 paper[2] = 0;
             }
-            if(paper[1] < 0)
-                paper[1] = 0;
+            if(paper[1] < 0) paper[1] = 0;
         }
         cnt++;
     }
