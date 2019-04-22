@@ -136,4 +136,4 @@ int main(void) {
     ans += cnt[l[pos]]+cnt[r[pos]];
     pf1l(ans);
   }
-}
+} 
