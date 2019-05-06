@@ -198,7 +198,7 @@ int main(void) {
 				continue;
 			}
 			if (seq[i].Y == 4) {
-				if (XX == 1) pf2(seq[i].X, seq[i].X + 3);
+				if (XX == 3) pf2(seq[i].X, seq[i].X + 3);
 				if (XX == 2) pf2(seq[i].X + 1, seq[i].X + 2);
 				continue;
 			}
