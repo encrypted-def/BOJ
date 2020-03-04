@@ -176,6 +176,7 @@ int main(void) {
 	vi D(scc.m, 0);
 	D[st_scc] = sz(scc.comp[st_scc]);
 	for (int i = st_scc; i >= 0; i--) {
+		if(D[i]==0) continue;
 		for (auto next : scc.sccadj[i])
 			D[next] = max(D[next], sz(scc.comp[next]) + D[i]);
 	}
