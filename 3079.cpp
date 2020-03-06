@@ -91,6 +91,7 @@ int solve(ll k){
   ll tot = 0;
   rep(i,0,N){
     tot += k / T[i];
+    if(tot >= M) return 1;
   }
   return tot >= M;
 }
