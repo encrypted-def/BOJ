@@ -41,20 +41,18 @@ int main(void) {
 			}
 		}
 		bool negCycle = false;
-		for (int edge_num = 1; edge_num <= N; edge_num++) {
+		for (int edge_num = 1; edge_num <= N+1; edge_num++) {
 			for (int st = 1; st <= N; st++) {
-				if (dist1[st] == MAX)
-					continue;
 				for (auto near : adj[st]) {
 					if (dist1[st] + near.Y < dist1[near.X]) {
 						dist1[near.X] = dist1[st] + near.Y;
-						if (edge_num == N) // negative cycle이 존재
+						if (edge_num == N+1) // negative cycle이 존재
 							negCycle = true;
 					}
 				}
 			}
 		}
-		if (dist1[1] < 0 || negCycle)
+		if (negCycle)
 			printf("YES\n");
 		else
 			printf("NO\n");		
