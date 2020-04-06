@@ -29,7 +29,7 @@ int main(void) {
         }
     }
     int ans = min(dist[1][v1] + dist[v1][v2] + dist[v2][N], dist[1][v2] + dist[v1][v2] + dist[v1][N]);
-    if (ans > 0xfffffff)
+    if (ans >= 0xfffffff)
         printf("-1");
     else
         printf("%d", ans);
