@@ -99,7 +99,7 @@ int main(void) {
 	rep(sz, 1, N) {
 		rep(i, 0, N - sz) {
 			rep(sep, i, i + sz) {
-				if (D[i][sep] == D[sep + 1][i + sz])
+				if (D[i][sep] == D[sep + 1][i + sz] && D[i][sep] != 0)
 					D[i][i + sz] = max(D[i][i + sz], D[i][sep]+1);
 				ans = max(ans,D[i][i + sz]);
 			}
