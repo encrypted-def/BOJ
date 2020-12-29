@@ -21,7 +21,5 @@ for sz in range(2,n+1):
 
     d[st][st+sz] = val
 
-st,div,sz=4,2,6
-
 print(d[0][n])
 
