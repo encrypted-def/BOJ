@@ -37,23 +37,23 @@ ll POW(ll a, ll b, ll MMM) { ll ret = 1; for (; b; b >>= 1, a = (a*a) % MMM)if (
 ll GCD(ll a, ll b) { return b ? GCD(b, a%b) : a; }
 ll LCM(ll a, ll b) { if (a == 0 || b == 0)return a + b; return a / GCD(a, b) * b; }
 ll INV(ll a, ll m) {
-	ll m0 = m, y = 0, x = 1;
-	if (m == 1)	return 0;
-	while (a > 1) {
-		ll q = a / m;
-		ll t = m;
-		m = a % m, a = t;
-		t = y;
-		y = x - q * y;
-		x = t;
-	}
-	if (x < 0) x += m0;
-	return x;
+  ll m0 = m, y = 0, x = 1;
+  if (m == 1)	return 0;
+  while (a > 1) {
+    ll q = a / m;
+    ll t = m;
+    m = a % m, a = t;
+    t = y;
+    y = x - q * y;
+    x = t;
+  }
+  if (x < 0) x += m0;
+  return x;
 }
 pll EXGCD(ll a, ll b) {
-	if (b == 0) return { 1,0 };
-	auto t = EXGCD(b, a%b);
-	return { t.second,t.first - t.second*(a / b) };
+  if (b == 0) return { 1,0 };
+  auto t = EXGCD(b, a%b);
+  return { t.second,t.first - t.second*(a / b) };
 }
 bool OOB(ll x, ll y, ll N, ll M) { return 0 > x || x >= N || 0 > y || y >= M; }
 #define X first
@@ -87,15 +87,17 @@ bool OOB(ll x, ll y, ll N, ll M) { return 0 > x || x >= N || 0 > y || y >= M; }
 int adjMat[1003][1003];
 int deg[1003];
 int N;
+int chk[1003];
 void solve(int cur){
-	rep(nxt,0,N){
-		while(adjMat[cur][nxt]){
-			adjMat[cur][nxt]--;
-			adjMat[nxt][cur]--;
-			solve(nxt);
-		}
-	}
-	pf1(cur+1);
+  for(;chk[cur] < N; chk[cur]++){
+    int nxt = chk[cur];
+    while(adjMat[cur][nxt]){
+      adjMat[cur][nxt]--;
+      adjMat[nxt][cur]--;
+      solve(nxt);
+    }
+  }
+  pf1(cur+1);
 }
 int main(void) {
   ios::sync_with_stdio(false);
@@ -103,16 +105,16 @@ int main(void) {
   sf1(N);
   rep(i, 0, N) {
     rep(j, 0, N) {
-			sf1(adjMat[i][j]);
-			deg[i]+=adjMat[i][j],deg[j]+=adjMat[i][j];
-		}
-	}
-	rep(i,0,N){
-		deg[i] /= 2;
-		if(deg[i] & 1){
-			pf1l(-1);
-			return 0;
-		}
-	}
-	solve(0);
+      sf1(adjMat[i][j]);
+      deg[i]+=adjMat[i][j],deg[j]+=adjMat[i][j];
+    }
+  }
+  rep(i,0,N){
+    deg[i] /= 2;
+    if(deg[i] & 1){
+      pf1l(-1);
+      return 0;
+    }
+  }
+  solve(0);
 }
